@@ -1,0 +1,96 @@
+<div class="page-wrapper">
+  <div class="dashboard-content card bg-ele-team">
+    <div class="card-controller">
+      <div class="text-base-mode">
+        <div class="card-header">
+          <div class="card-header-text-wrap">
+            <h4 class="card-header-text">
+              Profile
+            </h4>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="form-container">
+            <div class="input-container">
+              <div class="input-label">
+                <label for="name" class="controll-label">Name : </label>
+              </div>
+              <div class="input-wrap">
+                <div class="input-wrap" style="height: fit-content;">
+                  {{profileData.name}}
+                </div>
+              </div>
+            </div>
+            <div class="input-container">
+              <div class="input-label">
+                <label class="controll-label">Email : </label>
+              </div>
+              <div class="input-wrap ">
+                <div class="input-wrap" style="height: fit-content;">
+                  {{profileData.email}}
+                </div>
+              </div>
+            </div>
+            <div class="input-container">
+              <div class="input-label">
+                <label class="controll-label">Phone : </label>
+              </div>
+              <div class="input-wrap">
+                <div class="input-wrap" style="height: fit-content;">
+                  {{profileData.phone}}
+                </div>
+              </div>
+            </div>
+            <div class="input-container">
+              <div class="input-label">
+                <label class="controll-label">Address : </label>
+              </div>
+              <div class="input-wrap">
+                <div class="input-wrap" style="height: fit-content;">
+                  {{profileData.address}}
+                </div>
+              </div>
+            </div>
+            <div class="input-container" *ngIf="isEdit">
+              <div class="input-label">
+                <label class="controll-label">Current Password : </label>
+              </div>
+              <div class="input-wrap">
+                <input type="password" class="input-controller" [(ngModel)]="currenrPasswordInput" placeholder="password">
+              </div>
+            </div>
+            <div class="input-container" *ngIf="isEdit">
+              <div class="input-label">
+                <label class="controll-label">New Password : </label>
+              </div>
+              <div class="input-wrap">
+                <input type="password" class="input-controller" [(ngModel)]="passwordInput" placeholder="new password">
+              </div>
+            </div>
+            <div class="input-container" *ngIf="isEdit">
+              <div class="input-label">
+                <label class="controll-label">Confirm Password : </label>
+              </div>
+              <div class="input-wrap">
+                <input type="password" class="input-controller" [(ngModel)]="confirmPasswordInput"
+                  placeholder="confirm new password">
+              </div>
+            </div>
+          </div>
+          <div class="update-btn-wrap">
+            <ng-container *ngIf="!isEdit else isNotEditBtn">
+              <div class="btn update-btn text-white" (click)="onEditBtnClick()">Update Password</div>
+            </ng-container>
+            <ng-template #isNotEditBtn>
+              <div class="btn bg-light-gray text-white" (click)="onEditBtnClick()">Cancle</div>
+              <div class="btn update-btn text-white" (click)="updatePassword()">Update</div>
+            </ng-template>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="responseLog" #updateResponse>
+</div>

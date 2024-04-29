@@ -1,0 +1,308 @@
+.dashboard-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.left-container {
+  width: 64.8%;
+  height: 90dvh;
+  margin-bottom: 1rem;
+}
+
+.left-btm-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.info-container {
+  width: 24%;
+  min-width: 300px;
+  padding-left: 0.5rem;
+}
+
+.card-header {
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0.5rem 0 1rem;
+}
+
+.card-header-text {
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5rem;
+  /* 120% */
+  letter-spacing: -0.025rem;
+  font-size: 1.2rem;
+  color: var(--team-text);
+}
+
+.tracking-header {
+  margin-bottom: 1rem;
+}
+
+.transactions-number {
+  color: var(--team-topic-text);
+  font-size: 1.7rem;
+  margin: 0.5rem 1rem 0rem 1rem;
+}
+
+.filter {
+  height: fit-content;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+  background-color: #a3aed06c;
+  color: #8c99be;
+}
+
+.chart {
+  height: 28dvh;
+  width: 100%;
+}
+
+.pie-chart {
+  width: 54%;
+  margin: 1rem 0;
+  height: 29.5rem;
+}
+
+.pie-chart-wrap {
+  width: 60%;
+  max-width: 300px;
+  margin: 1rem auto;
+}
+
+.chart-data-track {
+  width: 100%;
+  margin-top: 1rem;
+  overflow-x: scroll;
+}
+
+.chart-data-container {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.chart-data {
+  border-right: 1px solid #8c99be;
+  text-align: center;
+  box-shadow: 1px 1px 10px 0 rgba(31, 42, 48, 0.08);
+  padding: 0.3rem;
+  margin: 0.5rem 0;
+  min-width: 4rem;
+}
+
+.chart-data:last-child {
+  border-right: none;
+}
+
+.chart-data-header {
+  display: flex;
+  width: fit-content;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.camera-list-container {
+  width: 45%;
+  height: 29.5rem;
+}
+
+thead {
+  width: calc(100% - 1em)
+}
+
+table {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  /* margin-top: 1rem; */
+}
+
+thead,
+tbody {
+  display: block;
+  width: 100%;
+  overflow: scroll;
+
+}
+
+tr>:nth-child(1),
+tr>:nth-child(2) {
+  text-align: left
+}
+
+tr {
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+tbody>tr {
+  padding: 0.35rem 0;
+}
+
+th,
+td {
+  /* width: 20%; */
+  text-align: center;
+  overflow: hidden;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+}
+
+th {
+  text-align: center
+}
+
+.camera-table-body {
+  max-height: 23rem;
+}
+
+.camName {
+  width: 90%;
+}
+
+.camStatus {
+  display: flex;
+  align-items: center;
+}
+
+.right-container {
+  width: 34.8%;
+  height: fit-content;
+}
+
+.tracking-table {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.tracking-table-body,
+.tracking-table-header {
+  width: 100%;
+  max-height: 85dvh;
+  display: block;
+  overflow-y: auto;
+  color: var(--team-text);
+}
+
+.image {
+  width: 8%;
+}
+
+.image>img {
+  width: 100%;
+  max-width: 5rem;
+}
+
+.name {
+  width: 20%;
+}
+
+.gender,
+.age,
+.emotion {
+  width: 12%;
+
+}
+
+.small-card-container {
+  max-width: 100%;
+  display: block;
+}
+
+@media screen and (max-width:1550px) {
+  .chart-container {
+    width: 100%;
+  }
+
+  .left-container {
+    width: 100%;
+    margin-bottom: 1rem;
+    height: fit-content;
+  }
+
+  .right-container {
+    width: 100%;
+    height: fit-content;
+  }
+
+  .tracking-table-header {
+    width: 100%;
+  }
+  .tracking-table-body {
+    height:fit-content;
+  }
+}
+
+@media screen and (max-width:1400px) {
+  .chart-container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:1300px) {
+  .chart-container {
+    width: 100%;
+    order: 2;
+  }
+
+  .small-card-container {
+    display: flex;
+    justify-content: left;
+    overflow: auto;
+  }
+
+  .info-container {
+    order: 1;
+    width: 100%;
+    padding-left: 0;
+    height: fit-content;
+
+  }
+}
+
+@media screen and (max-width:1000px) {
+  .chart {
+    height: fit-content;
+  }
+
+  .pie-chart {
+    width: 100%;
+    height: fit-content;
+  }
+
+  .camera-list-container {
+    width: 100%;
+    height: fit-content;
+  }
+
+  .camName {
+    width: 100%;
+  }
+
+}
+
+@media screen and (max-width:480px) {
+  * {
+    font-size: 1rem !important;
+    scale: 0.99;
+  }
+
+  .card-footer {
+    display: none;
+  }
+
+  .tracking-table-body {
+    height:fit-content;
+  }
+}

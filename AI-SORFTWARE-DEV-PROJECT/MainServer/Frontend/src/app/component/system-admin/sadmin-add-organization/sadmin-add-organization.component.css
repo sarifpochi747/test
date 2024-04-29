@@ -1,0 +1,172 @@
+.page-wrapper {
+    min-height: 90dvh;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.left-container{
+    max-height: 85dvh;
+    width: 50%;
+}
+.right-container{
+    max-height: 85dvh;
+    overflow-y: auto;
+    width: 50%;
+    margin: 0 auto;
+}
+.page-header {
+    padding: 1rem 2rem;
+    /* color: var(--team-text); */
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card-header {
+    font-size: 1.2rem;
+    color: var(--team-topic-text);
+    margin-bottom: 0;
+}
+
+.alert-require{
+    width: 100%;
+    font-size: 18px;
+}
+.form-container {
+    width: 90%;
+    max-width: 45rem;
+    padding: 0 2rem;
+}
+
+.add-member-btn {
+    background-color: #36438D;
+}
+
+.input-label {
+    margin-bottom: 0.5rem;
+}
+
+.filter-text {
+    padding: 0.35rem 0.5rem;
+}
+
+.text-area {
+    height: 7rem;
+}
+
+.btn-wrap {
+    margin: 3rem auto;
+    height: fit-content;
+}
+
+
+.p-error{
+    color: red;
+    font-size: 12px;
+}
+.input-container{
+    width: 100%;
+    padding: 0.5rem 0;
+}
+.input-label{
+    width: 30%;
+}
+.input-wrap{
+    width: 100%;
+}
+.input{
+    width: 60%;
+    margin-right: 0.5rem;
+}
+.add-input-box-btn-wrap {
+    width: 100%;
+    text-align: center;
+}
+
+.add-input-box-btn {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.add-input-box-btn:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width:1400px) {
+    .form-container {
+        margin: 0 auto;
+        width: 100%;
+    }
+    .page-wrapper {
+        display: block;
+        height: fit-content;
+    }
+    .left-container{
+        width: 90%;
+        padding: 0.5rem;
+        height: fit-content;
+        max-height: none;
+    }
+    .right-container{
+        width: 90%;
+        padding: 0.5rem;
+        height: fit-content;
+        max-height: none;
+    }
+    .unique-column-input-coontainer{
+        width: 80%;
+        margin: 0 auto;
+    }
+    .input-container{
+        width: 100%;
+        display: flex;
+    }
+    .input-label{
+        width: 85%;
+    }
+    .input{
+        width: 75%;
+    }
+    .btn{
+        min-width: 20px;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    .form-container {
+        max-width: none;
+        padding: 0 2rem;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .form-container {
+        padding: 0;
+    }
+    .image-input-container {
+        width: 90%;
+        margin: 0 auto;
+        max-width: none;
+        height: fit-content;
+        aspect-ratio: 16/5;
+        margin-bottom: 1rem;
+    }
+
+    .image-input-camera-icon {
+        font-size: 15dvw;
+        height: fit-content;
+    }
+
+    .image-input-btn {
+        display: inline-block;
+        margin: 0.25rem;
+    }
+    .input{
+        width: 70%;
+    }
+    .btn{
+        scale: 1;
+    }
+}

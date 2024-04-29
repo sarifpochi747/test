@@ -1,0 +1,169 @@
+<div class="page-wrapper card bg-ele-team">
+    <div class="page-header">
+        <div class="page-header-text">
+            New Member
+        </div>
+        <div class="filter" (click)="createMemberList()">
+            <div class="filter-container">
+                <div class="filter-icon">
+                    <i class="fa-regular fa-bell"></i>
+                </div>
+                Add Member
+            </div>
+        </div>
+    </div>
+
+    <div class="table">
+        <div class="thead">
+            <div class="trow">
+                <div class="trow-input">
+                    <div class="thcol number"></div>
+                    <div class="thcol name">Name</div>
+                    <div class="thcol phone">Phone</div>
+                    <div class="thcol gender">Gender</div>
+                    <div class="thcol brithday">Brithday</div>
+                    <div class="thcol address">Address</div>
+                </div>
+            </div>
+        </div>
+        <div class="tbody" #scrollContainer>
+            <input type="file" name="imgInput" id="imgInput" [(ngModel)]="imageFile" #imgInput style="display: none;"
+                accept="image/*" (change)="handleUpload($event)" multiple>
+            <ng-container *ngFor="let index of inputArray;index as i">
+                <div class="trow">
+                    <div class="trow-input">
+                        <div class="tbcol number">{{i+1}}</div>
+                        <div class="tbcol name">
+                            <ng-container *ngIf="index.isSubmitted;else name">
+                                {{index.nameInput}}
+                            </ng-container>
+                            <ng-template #name>
+                                <input class="input" type="text" [(ngModel)]="index.nameInput">
+                            </ng-template>
+                        </div>
+                        <div class="tbcol phone">
+                            <ng-container *ngIf="index.isSubmitted;else phone">
+                                {{index.nameInput}}
+                            </ng-container>
+                            <ng-template #phone>
+                                <input class="input" type="text" [(ngModel)]="index.phoneInput">
+                            </ng-template>
+                        </div>
+                        <div class="tbcol gender">
+                            <ng-container *ngIf="index.isSubmitted;else gender">
+                                {{index.phoneInput}}
+                            </ng-container>
+                            <ng-template #gender>
+                                <select class="input filter-text" [(ngModel)]="index.genderInputstring"
+                                    name="genderInput">
+                                    <option value="gender" disabled selected hidden>gender</option>
+                                    <option value="Man">Man</option>
+                                    <option value="Woman">Woman</option>
+                                </select>
+                            </ng-template>
+                        </div>
+                        <div class="tbcol brithday">
+                            <ng-container *ngIf="index.isSubmitted;else brithday">
+                                {{index.birthdayInput}}
+                            </ng-container>
+                            <ng-template #brithday>
+                                <input class="input date-filter" type="date" [(ngModel)]="index.birthdayInput">
+                            </ng-template>
+                        </div>
+                        <div class="tbcol address">
+                            <ng-container *ngIf="index.isSubmitted;else address">
+                                {{index.addressInput}}
+                            </ng-container>
+                            <ng-template #address>
+                                <input class="input" type="text" [(ngModel)]="index.addressInput">
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="trow-unique-data">
+                        <!-- <div class="tbcol number"></div> -->
+                        <ng-container *ngFor="let col of index.uniqueColumn">
+                            <div class="tcol-unique-data">
+                            <div class="unique-col-name">{{col.uniqColName}}</div>
+                            <div class="unique-col-data">
+                                <ng-container *ngIf="index.isSubmitted">
+                                    {{col.uniqColData}}
+                                </ng-container>
+                                <ng-container *ngIf="!index.isSubmitted">
+                                    <input class="input" type="text" [(ngModel)]="col.uniqColData">
+                                </ng-container>
+                            </div>
+                        </div>
+                        </ng-container>
+                    </div>
+                    <div class="trow-img-input">
+                        <div class="image-input-container">
+                            <div class="image-input-btn btn text-white" (click)="openCamera(i)"><i
+                                    class="fa-solid fa-camera"></i>Camera</div>
+                            <div class="image-input-btn btn text-white" (click)="imgUpload(i)"><i
+                                    class="fa-solid fa-cloud-arrow-up"></i>Upload</div>
+                        </div>
+                        <div class="image-content-container">
+                            <ng-container *ngIf="index.imgArray.length > 0;else noImg">
+                                <ng-container *ngFor="let img of index.imgArray; let i=index">
+                                    <div class="img-wrap">
+                                        <div class="delete-image-icon">
+                                            <i class="fa-solid fa-circle-plus" (click)="deletemg(index,i)"></i>
+                                        </div>
+                                        <img [src]="img.imgSrc" alt="Image" style="height: 100%;">
+                                    </div>
+                                </ng-container>
+                            </ng-container>
+                            <ng-template #noImg>
+                                <div class="img-wrap">
+                                    <i class="fa-regular fa-user"></i>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <div class="add-input-box-btn-wrap">
+                <div class="add-input-box-btn text-team">
+                    <i class="fa-solid fa-circle-plus" (click)="addInputBox()"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="isUsingCamera">
+    <div class="card alert-container bg-team">
+        <div class="card-header">
+            Camera
+        </div>
+        <div class="card-body">
+            <webcam [trigger]="invokeObservable" (imageCapture)="captureImg($event)"></webcam>
+            <div class="image-content-container ">
+                <ng-container *ngIf="inputArray[currentIndex].imgArray.length > 0">
+                    <ng-container *ngFor="let item of inputArray[currentIndex].imgArray; let i=index">
+                        <div class="img-wrap">
+                            <div class="delete-image-icon">
+                                <i class="fa-solid fa-circle-plus" (click)="deletemg(inputArray[currentIndex],i)"></i>
+                            </div>
+                            <img [src]="item.imgSrc" alt="Image" style="height: 100%;">
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn bg-light-gray text-white" style="margin: 1rem 1rem 0 1rem;" (click)="closCamera()">
+                close
+            </button>
+            <button class="btn bg-team-blue text-white" style="margin: 1rem 1rem 0 1rem;" (click)="getSnapshot()">
+                capture
+            </button>
+
+        </div>
+    </div>
+
+    <div class="backdrop" (click)="closCamera()"></div>
+</ng-container>
+
+<div class="responseLog" #updateResponse>
+</div>

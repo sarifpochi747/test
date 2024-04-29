@@ -1,0 +1,231 @@
+<div class="page-wrapper">
+    <div class="left-container card bg-ele-team">
+        <div class="card-controller">
+            <div class="text-base-mode">
+                <div class="card-header">
+                    <div class="card-header-text-wrap">
+                        <h4 class="card-header-text">
+                            Profile
+                        </h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="form-container">
+                        <ng-container *ngIf="!isEdit else isEditing">
+                            <div class="input-container">
+                                <div class="input-label">
+                                    <label for="name" class="controll-label">Name : </label>
+                                </div>
+                                <div class="input-wrap">
+                                    <div class="input-wrap" style="height: fit-content;">
+                                        {{profileData.organizationName}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <div class="input-label">
+                                    <label class="controll-label">Email : </label>
+                                </div>
+                                <div class="input-wrap ">
+                                    <div class="input-wrap" style="height: fit-content;">
+                                        {{profileData.email}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <div class="input-label">
+                                    <label class="controll-label">Phone : </label>
+                                </div>
+                                <div class="input-wrap">
+                                    <div class="input-wrap" style="height: fit-content;">
+                                        {{profileData.phone}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <div class="input-label">
+                                    <label class="controll-label">Address : </label>
+                                </div>
+                                <div class="input-wrap">
+                                    <div class="input-wrap" style="height: fit-content;">
+                                        {{profileData.address}}
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-template #isEditing>
+                            <div class="input-container">
+                                <div class="input-label">
+                                    <label for="name" class="controll-label">Name : </label>
+                                </div>
+                                <div class="input-wrap">
+                                    <input type="text" class="input-controller"
+                                        [(ngModel)]="profileData.organizationName">
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <div class="input-label">
+                                    <label class="controll-label">Email : </label>
+                                </div>
+                                <div class="input-wrap ">
+                                    <input type="text" class="input-controller" [(ngModel)]="profileData.email">
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <div class="input-label">
+                                    <label class="controll-label">Phone : </label>
+                                </div>
+                                <div class="input-wrap">
+                                    <input type="text" class="input-controller" [(ngModel)]="profileData.phone">
+                                </div>
+                            </div>
+                            <div class="input-container" style="display: flex;align-items: start;">
+                                <div class="input-label">
+                                    <label class="controll-label">Address : </label>
+                                </div>
+                                <div class="input-wrap" style="height: fit-content;">
+                                    <textarea type="text" class="input-controller text-area"
+                                        [(ngModel)]="profileData.address"></textarea>
+                                </div>
+                            </div>
+                            <div class="input-container" *ngIf="isEdit">
+                                <div class="input-label">
+                                    <label class="controll-label">Password : </label>
+                                </div>
+                                <div class="input-wrap">
+                                    <input type="password" class="input-controller" [(ngModel)]="passwordInput"
+                                        placeholder="password">
+                                </div>
+                            </div>
+                            <div class="input-container" *ngIf="isEdit">
+                                <div class="input-label">
+                                    <label class="controll-label">Confirm Password : </label>
+                                </div>
+                                <div class="input-wrap">
+                                    <input type="password" class="input-controller" [(ngModel)]="confirmPasswordInput"
+                                        placeholder="confirm password">
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
+                    <div class="update-btn-wrap">
+                        <ng-container *ngIf="!isEdit else isNotEditBtn">
+                            <div class="btn update-btn text-white" (click)="onEditBtnClick()">Update</div>
+                        </ng-container>
+                        <ng-template #isNotEditBtn>
+                            <div class="btn bg-light-gray text-white" (click)="onEditBtnClick()">Cancle</div>
+                            <div class="btn update-btn text-white" (click)="updateData()">Update</div>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="form-container">
+                        <ng-container *ngIf="!isUniqColEdit else isEditUniqCol">
+                            <ng-container *ngFor="let col of uniqueColumn;index as i">
+                                <div class="input-container">
+                                    <div class="input-label">
+                                        <label class="controll-label">Unique :</label>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <div class="input-wrap" style="height: fit-content;">
+                                            {{col.uniqColName}}
+                                        </div>
+                                        <div class="btn-wrap">
+                                            <div class="mini-btn text-red delete-col-btn" (click)="onDeleteClick(i)">Delete</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                        <ng-template #isEditUniqCol>
+                            <ng-container *ngFor="let col of uniqueColumn">
+                                <div class="input-container">
+                                    <div class="input-label">
+                                        <label class="controll-label">Unique :</label>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <input type="text" class="input-controller" [(ngModel)]="col.uniqColName">
+                                    </div>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngFor="let col of newUniqueColumn">
+                                <div class="input-container">
+                                    <div class="input-label">
+                                        <label class="controll-label">New Unique :</label>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <input type="text" class="input-controller" [(ngModel)]="col.uniqColName"
+                                            placeholder="ปล่อยเป็นช่องว่างหากไม่ต้องการใชังาน">
+                                    </div>
+                                </div>
+                            </ng-container>
+                            <div class="add-input-box-btn-wrap btn-wrap">
+                                <div class="add-input-box-btn text-team">
+                                    <i class="fa-solid fa-circle-plus" (click)="addInputBox()"></i>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
+                    <div class="update-btn-wrap">
+                        <ng-container *ngIf="!isUniqColEdit else isEditUniqColBtn">
+                            <div class="btn update-btn text-white" (click)="onUniqEditBtnClick()">Update</div>
+                        </ng-container>
+                        <ng-template #isEditUniqColBtn>
+                            <div class="btn bg-light-gray text-white" (click)="onUniqEditBtnClick()">Cancle</div>
+                            <div class="btn update-btn text-white" (click)="updateUniqCol()">Update</div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-container card bg-ele-team">
+        <div class="card-header">
+            <h4 class="card-header-text">
+                Camera
+            </h4>
+        </div>
+        <div class="card-body">
+            <div class="table">
+                <div class="camera-table-header">
+                    <div class="trow">
+                        <div class="cam-id">ID</div>
+                        <div class="cam-name">Name</div>
+                        <div class="cam-date">Date Install</div>
+                        <div class="cam-status">Status</div>
+                    </div>
+                </div>
+                <div class="camera-table-body">
+                    <div class="trow" *ngFor="let cam of camera">
+                        <div class="cam-id">{{cam.cameraId}}</div>
+                        <div class="cam-name">{{cam.cameraName}}</div>
+                        <div class="cam-date">{{dateFormater(cam.dateInstall)}}</div>
+                        <div [class]="'cam-status text-status-'+cam.status">
+                            <div class="color-dot"
+                                [style]="cam.status=='Active' ? 'background-color:#05CD99;':'background-color:red;'">
+                            </div>
+                            {{cam.status}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="isDelete">
+    <div class="alert-container bg-team">
+        Are you confirm delete member?
+        <div class="btn-wrap">
+            <button class="btn bg-blue text-white" style="margin: 1rem 1rem 0 1rem;"
+                (click)="cancleDelete()">Cancle</button>
+            <button class="btn bg-red text-white" style="margin: 1rem 1rem 0 1rem;"
+                (click)="submitDelete()">
+                Delete
+            </button>
+        </div>
+    </div>
+    <div class="backdrop" (click)="cancleDelete()"></div>
+</ng-container>
+<div class="responseLog" #updateResponse>
+</div>

@@ -1,0 +1,248 @@
+.dashboard-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.left-container {
+  width: 64.8%;
+  height: 90dvh;
+}
+
+.left-btm-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin-top: 0.5rem
+}
+
+.info-container {
+  width: 24%;
+  min-width: 300px;
+  padding-left: 0.5rem;
+}
+
+.card-header {
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem 0 2rem;
+}
+
+.card-header-text {
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5rem;
+  /* 120% */
+  letter-spacing: -0.025rem;
+  font-size: 1.2rem;
+  color: var(--team-text);
+}
+
+.tracking-header {
+  margin-bottom: 1rem;
+}
+
+.transactions-number {
+  color: var(--team-topic-text);
+  font-size: 1.7rem;
+  margin: 0.5rem 1rem 0rem 1rem;
+}
+
+.filter {
+  height: fit-content;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+  background-color: #a3aed06c;
+  color: #8c99be;
+}
+
+.chart {
+  height: 28dvh;
+}
+
+.chart-data {
+  border-right: 1px solid #8c99be;
+  text-align: center;
+  box-shadow: 1px 1px 10px 0 rgba(31, 42, 48, 0.08);
+  padding: 0.3rem;
+  margin: 0.5rem 0;
+  min-width: 4rem;
+}
+
+.chart-data:last-child {
+  border-right: none;
+}
+
+.chart-data-header {
+  display: flex;
+  width: fit-content;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.camera-list-container {
+  width: 45%;
+  height: 29.5rem;
+}
+
+.camera-table {
+  padding: 0 1rem;
+}
+
+.camera-table-header {
+  display: block;
+}
+
+.camera-table-body {
+  overflow-y: auto !important;
+  height: 25rem !important;
+}
+
+.camName {
+  width: 70%;
+  text-align: left;
+  /* min-width: 150px; */
+}
+
+.organization {
+  width: 15%;
+  /* min-width: 100px; */
+
+}
+
+.camStatus-wrap {
+  width: 10%;
+  /* min-width: 50px; */
+}
+
+.camStatus {
+  display: flex;
+  align-items: center;
+}
+
+.right-container {
+  width: 34.8%;
+  height: 90dvh;
+}
+
+.tracking-table {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.tracking-table-body,
+.tracking-table-header {
+  width: 100%;
+  max-height: 48rem;
+  display: block;
+  overflow-y: auto;
+  color: var(--team-text);
+}
+
+.thead{
+  font-weight: 700;
+}
+
+.name {
+  width: 70%;
+  min-width: 350px;
+}
+
+.trackingNumber {
+  width: 30%;
+  min-width: fit-content;
+  text-align: center;
+}
+
+@media screen and (max-width:1550px) {
+  .chart-container {
+    width: 100%;
+  }
+
+  .left-container {
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 1rem;
+  }
+
+  .right-container {
+    width: 100%;
+  }
+
+  .tracking-table-header {
+    width: 100%;
+    height: 50rem;
+  }
+}
+
+@media screen and (max-width:1400px) {
+  .chart-container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:1300px) {
+  .chart-container {
+    width: 100%;
+    order: 2;
+  }
+
+  .small-card-container {
+    display: flex;
+    justify-content: left;
+    overflow: auto;
+  }
+
+  .info-container {
+    order: 1;
+    width: 100%;
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-width:1000px) {
+  .chart {
+    height: 25dvh;
+  }
+
+  .pie-chart {
+    width: 100%;
+  }
+
+  .camera-list-container {
+    width: 100%;
+  }
+
+  .camName {
+    width: 100%;
+  }
+
+}
+
+@media screen and (max-width:480px) {
+  * {
+    font-size: 1rem !important;
+    scale: 0.99;
+  }
+
+  .chart {
+    height: 20dvh;
+  }
+
+  .card-footer {
+    display: none;
+  }
+
+  .right-container {
+    max-height: 35rem;
+  }
+
+  .tracking-table-body {
+    max-height: 33.5rem;
+  }
+}

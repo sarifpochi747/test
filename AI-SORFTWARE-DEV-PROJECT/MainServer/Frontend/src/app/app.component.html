@@ -1,0 +1,24 @@
+<body [style]="
+'--team-bg:'+ user.colorTeam.bg +
+';--team-ele-bg:'+ user.colorTeam.elementBg+
+';--team-text:'+ user.colorTeam.text+
+';--team-topic-text:'+ user.colorTeam.topicText+';'
+">
+  <loading-transition></loading-transition>
+  <div class="row">
+    <div class="left-bar">
+      <ng-container *ngIf="user.client.isAdmin  else SystemAdimLeftMenu">
+        <app-left-menu></app-left-menu>
+      </ng-container>
+      <ng-template #SystemAdimLeftMenu>
+        <ng-container *ngIf="user.client.isSystemAdmin">
+          <app-sadmin-left-menu></app-sadmin-left-menu>
+        </ng-container>
+      </ng-template>
+    </div>
+    <div class="page-container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</body>

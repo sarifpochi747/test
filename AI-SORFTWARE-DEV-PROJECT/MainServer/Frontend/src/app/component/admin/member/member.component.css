@@ -1,0 +1,163 @@
+.page-header {
+    padding: 1rem 2rem;
+    color: var(--team-text);
+}
+
+
+
+thead {
+    width: calc(100% - 1em);
+}
+
+table {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    padding: 0.35rem 1rem;
+    box-shadow: none;
+    border-collapse: collapse;
+}
+
+thead{
+    display: block;
+    width: 97.5%;
+    overflow: scroll;
+
+}
+tbody {
+    display: block;
+    height: 75dvh;
+    overflow: scroll;
+}
+
+tr>:nth-child(1){
+    width: 15%;
+    min-width: 150px;
+}
+
+tr>:nth-child(2) {
+    width: 10%;
+    min-width: 50px;
+}
+tr>:nth-child(2) {
+    width: 10%;
+    min-width: 80px;
+}
+tr>:nth-child(3) {
+    width: 10%;
+    min-width: 100px;
+}
+tr>:nth-child(4) {
+    width: 10%;
+    min-width: 100px;
+}
+tr>:nth-child(5) {
+    width: 30%;
+    min-width: 200px;
+}
+tr>:nth-child(6) {
+    width: 5%;
+    min-width: 20px; 
+}
+tbody>tr>:nth-child(1),
+tbody>tr>:nth-child(5){
+    text-align: left;
+}
+
+tr {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow-y: scroll;
+}
+
+tbody>tr {
+    border-bottom: 1px solid var(--light-gray-70);
+}
+tbody>tr::-webkit-scrollbar{
+    display: none;
+}
+
+th,
+td {
+    text-align: center;
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+}
+
+th {
+    text-align: center
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.header-btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0.5rem 0;
+}
+
+.header-btn {
+    margin: 0.5rem;
+    margin-left: 0;
+}
+.alert-container {
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    padding: 2.5rem;
+    font-size: 1.25rem;
+  }
+@media screen and (max-width:700px) {}
+
+@media screen and (max-width:600px) {
+    .header-btn-container {
+        margin: 0 auto;
+    }
+
+    .btn-icon-split {
+        padding: 0.2rem 0.5rem;
+        margin: 0;
+    }
+
+    .btn-icon-split>i {
+        display: none;
+    }
+
+    .mobile {
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .mobile>div {
+        padding: 0.5rem;
+        overflow: hidden;
+    }
+
+    .mobile>:hover {
+        height: 1.2rem;
+    }
+
+    .mobile>div>tr {
+        width: 100%;
+    }
+
+    .mobile>div>tr>:first-child {
+        width: 50%;
+    }
+
+    .mobile>div>tr>:nth-child(2) {
+        width: 50%;
+    }
+
+    .mobile>:nth-child(even) {
+        background-color: var(--white-smoke);
+    }
+}

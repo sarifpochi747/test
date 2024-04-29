@@ -1,0 +1,125 @@
+.dashboard-content {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.card-controller {
+  width: 100%;
+}
+
+.card-body {
+  width: 90%;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.card-header {
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem 0 2rem;
+}
+
+.card-header-text {
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5rem;
+  letter-spacing: -0.025rem;
+  font-size: 1.4rem;
+  color: var(--team-topic-text);
+  padding: 1rem 2rem 0rem 2rem;
+}
+
+.input-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.input-container,
+.input-label,
+.controll-label {
+  font-size: 1.25rem ;
+}
+
+.input-controller {
+  max-width: 500px;
+}
+
+.update-btn-wrap {
+  width: fit-content;
+  margin-left: auto;
+}
+.update-btn{
+  background-color: #36438D;
+}
+.btn {
+  margin: 0 0.5rem !important;
+}
+
+.controll-label {
+  color: var(--team-topic-text) !important;
+}
+
+@media screen and (max-width:1550px) {
+  .chart-container {
+    width: 100%;
+  }
+
+  .left-container {
+    width: 59.8%;
+  }
+
+  .right-container {
+    width: 39.8%;
+  }
+
+  .tracking-table-header {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:1400px) {
+  .chart-container {
+    width: 100%;
+  }
+
+  .input-container {
+    width: 100%;
+  }
+  .input-label{
+    width: 30%;
+  }
+  .input-wrap {
+    width: 70%;
+    height: 1.55rem;
+  }
+}
+
+@media screen and (max-width:1300px) {}
+
+@media screen and (max-width:1000px) {}
+
+@media screen and (max-width:600px) {
+  .input-label,
+  .input-wrap ,
+  .controll-label{
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width:480px) {
+  * {
+    font-size: 1rem !important;
+    scale: 0.99;
+  }
+
+  .chart {
+    height: 20dvh;
+  }
+
+  .card-footer {
+    display: none;
+  }
+}

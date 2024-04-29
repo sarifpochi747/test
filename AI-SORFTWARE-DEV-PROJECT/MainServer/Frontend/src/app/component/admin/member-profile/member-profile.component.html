@@ -1,0 +1,230 @@
+<div class="page-wrapper">
+    <div class="dashboard-content">
+        <div class="card left-container bg-ele-team">
+            <div class="card-controller">
+                <div class="text-base-mode">
+                    <div class="card-header">
+                        <div class="card-header-text-wrap">
+                            <h4 class="card-header-text">
+                                Profile
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-container">
+                            <div class="input-container" style="align-items: start;">
+                                <div class="input-label">
+                                    <label for="name" class="controll-label">Profile</label>
+                                </div>
+                                <div class="profile-img-wrap input-wrap" style="align-items: start;">
+                                    <input type="file" name="imgInput" id="imgInput" [(ngModel)]="imageFile" #imgInput style="display: none;" accept="image/*" (change)="handleUpload($event)" multiple>
+                                    <img class="profile-img" [src]="userData.profileImage" alt="">
+                                    <div class="image-input-container" *ngIf="isEdit">
+                                        <div class="image-input-btn btn text-white" (click)="openCamera()"><i class="fa-solid fa-camera"></i>Camera</div>
+                                        <div class="image-input-btn btn text-white" (click)="imgUpload()"><i class="fa-solid fa-cloud-arrow-up"></i>Upload</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-container *ngIf="isEdit; else isNotEdit">
+                                <div class="input-container">
+                                    <div class="input-label">
+                                        <label for="name" class="controll-label">Name</label>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <input type="text" class="input-controller" [(ngModel)]="userData.name" placeholder="name">
+                                    </div>
+                                </div>
+                                <div class="input-container">
+                                    <div class="input-label">
+                                        <label class="controll-label">Phone</label>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <input type="tell" class="input-controller" [(ngModel)]="userData.phone" placeholder="phone">
+                                    </div>
+                                </div>
+                                <div class="input-container">
+                                    <div class="input-label">
+                                        <label class="controll-label">Gender</label>
+                                    </div>
+                                    <div class="input-wrap ">
+                                        <select class="input-controller filter-text" [(ngModel)]="userData.gender" name="genderInput">
+                                            <option value="gender" disabled selected hidden>gender</option>
+                                            <option value="Man">Man</option>
+                                            <option value="Woman">Woman</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-container">
+                                    <div class="input-label">
+                                        <label class="controll-label">Birthday</label>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <div class="input-controller filter-text">
+                                            <input class="date-filter" type="date" [(ngModel)]="userData.birthday">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-container" style="align-items: start;">
+                                    <div class="input-label">
+                                        <label class="controll-label">Address</label>
+                                    </div>
+                                    <div class="input-wrap" style="height: fit-content;">
+                                        <textarea class="input-controller text-area" [(ngModel)]="userData.address" placeholder="Address"></textarea>
+                                    </div>
+                                </div>
+                                <ng-container *ngFor="let column of userData.uniqueData">
+                                    <div class="input-container" style="align-items: start;">
+                                        <div class="input-label">
+                                            <label class="controll-label">{{column.uniqueColumn.uniqColName}}</label>
+                                        </div>
+                                        <div class="input-wrap" style="height: fit-content;">
+                                            <input type="text" class="input-controller" [(ngModel)]="column.uniqColData" [placeholder]="column.uniqueColumn.uniqColName">
+                                        </div>
+                                    </div>
+                                </ng-container>
+
+                            </ng-container>
+                            <ng-template #isNotEdit>
+                                <div class="input-container">
+                                    <div class="input-label">
+                                        <label for="name" class="controll-label">Name</label>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <div class="input-wrap" style="height: fit-content;">
+                                            {{userData.name}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-container">
+                                    <div class="input-label">
+                                        <label class="controll-label">Phone</label>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <div class="input-wrap" style="height: fit-content;">
+                                            {{userData.phone}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-container">
+                                    <div class="input-label">
+                                        <label class="controll-label">Gender</label>
+                                    </div>
+                                    <div class="input-wrap ">
+                                        <div class="input-wrap" style="height: fit-content;">
+                                            {{userData.gender}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-container">
+                                    <div class="input-label">
+                                        <label class="controll-label">Birthday</label>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <div class="input-wrap" style="height: fit-content;">
+                                            {{userData.birthday}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-container" style="align-items: start;">
+                                    <div class="input-label">
+                                        <label class="controll-label">Address</label>
+                                    </div>
+                                    <div class="input-wrap" style="height: fit-content;">
+                                        {{userData.address}}
+                                    </div>
+                                </div>
+                                <ng-container *ngFor="let column of userData.uniqueData">
+                                    <div class="input-container" style="align-items: start;">
+                                        <div class="input-label">
+                                            <label class="controll-label">{{column.uniqueColumn.uniqColName}}</label>
+                                        </div>
+                                        <div class="input-wrap" style="height: fit-content;">
+                                            {{column.uniqColData}}
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </ng-template>
+                        </div>
+
+                        <div class="update-btn-wrap">
+                            <ng-container *ngIf="!isEdit else isNotEditBtn">
+                                <div class="btn delete-btn bg-red text-white" (click)="onDeleteMemberClick()">Delete
+                                </div>
+                                <div class="btn update-btn text-white" (click)="onEditBtnClick()">Update</div>
+                            </ng-container>
+                            <ng-template #isNotEditBtn>
+                                <div class="btn bg-light-gray text-white" (click)="cancleEdit()">Cancle</div>
+                                <div class="btn update-btn text-white" (click)="updateData()">Update</div>
+                            </ng-template>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card right-container  bg-ele-team">
+            <div class="card-header">
+                <h4 class="card-header-text tracking-header">
+                    Last tracking
+                </h4>
+                <span class="" *ngIf="maxPage>1">
+                    <div class="pagination-container bg-ele-team text-blue">
+                        <ng-container *ngFor="let i of pageBar">
+                            <div [class]="'pagination-btn'+ (i==page ? ' pagination-btn-active' : '') + ( i==1 ? ' pagination-left-btn':'')+ ( i==pageBar[pageBar.length-1] ? ' pagination-right-btn':'')"
+                                (click)="onPageBarClick(i)">
+                                <div class="">{{i}}</div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </span>
+            </div>
+            <table class="tracking-table">
+                <tbody class="tracking-table-body">
+                    <tr *ngFor="let item of tracking">
+                        <td class="image mouse-pointer" [routerLink]="'/tracking-detail/'+(item.imagecaptureId)"><img [src]="item.image" alt=""></td>
+                        <td class="gender mouse-pointer" [routerLink]="'/tracking-detail/'+(item.imagecaptureId)">{{item.camera}}</td>
+                        <td class="gender mouse-pointer" [routerLink]="'/tracking-detail/'+(item.imagecaptureId)">{{item.dateTime}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<ng-container *ngIf="isUsingCamera">
+    <div class="card alert-container bg-team">
+        <div class="card-header">
+            Camera
+        </div>
+        <div class="card-body">
+            <webcam [trigger]="invokeObservable" (imageCapture)="captureImg($event)"></webcam>
+        </div>
+        <div class="card-footer">
+            <button class="btn bg-light-gray text-white" style="margin: 1rem 1rem 0 1rem;" (click)="closCamera()">
+                close
+            </button>
+            <button class="btn bg-team-blue text-white" style="margin: 1rem 1rem 0 1rem;" (click)="getSnapshot()">
+                capture
+            </button>
+
+        </div>
+    </div>
+
+    <div class="backdrop" (click)="closCamera()"></div>
+</ng-container>
+
+<ng-container *ngIf="deleteAlert">
+    <div class="alert-container bg-team">
+        Are you confirm delete member?
+        <div class="btn-wrap">
+            <button class="btn bg-blue text-white" style="margin: 1rem 1rem 0 1rem;" (click)="cancleDelete()">Cancle</button>
+            <button class="btn bg-red text-white" style="margin: 1rem 1rem 0 1rem;" (click)="connfirmDeleteMemberClick()">
+                Delete
+            </button>
+        </div>
+    </div>
+    <div class="backdrop" (click)="cancleDelete()"></div>
+</ng-container>
+
+<div class="responseLog" #updateResponse>
+</div>

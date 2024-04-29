@@ -1,0 +1,99 @@
+<div class="page-wrapper card bg-ele-team">
+    <div class="page-header">
+        <div class="page-header-text">
+            Members
+        </div>
+        <div class="filter">
+            <div class="search-container">
+                <div class="search-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="search" [(ngModel)]="filter"
+                        (change)="queryData()">
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="render && render.length > 0 ; else canNotFineUserInDomain">
+        <table class="table">
+            <thead class="card-header">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                    <!-- <th>Change status</th>v -->
+                </tr>
+            </thead>
+            <tbody class="card-body">
+                <ng-container *ngFor="let org of render;index as i">
+                    <tr>
+                        <td [routerLink]="'/system-admin/organization/'+(org.organizationId)" class="mouse-pointer">
+                            {{org.organizationId}}</td>
+                        <td [routerLink]="'/system-admin/organization/'+(org.organizationId)" class="mouse-pointer">
+                            {{org.organizationName}}</td>
+                        <td [routerLink]="'/system-admin/organization/'+(org.organizationId)" class="mouse-pointer">
+                            {{org.email}}</td>
+                        <td>{{org.phone}}</td>
+                        <td>{{org.address}}</td>
+                        <td>
+                            <label [class]="'change-status-btn text-status-'+org.organizeStatus" >
+                                {{org.organizeStatus}}
+                            </label>
+                        </td>
+                        <!-- <td [class]="(org.organizeStatus==='Active'?'text-red':'text-green') + ' change-status-btn'"
+                            (click)="alertChangeStatusOrganization(i)">
+                            {{org.organizeStatus==='Active'?'Disable':'Active'}}
+                        </td> -->
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </ng-container>
+    <ng-template #canNotFineUserInDomain>
+        user not found
+    </ng-template>
+    <span class="pagination-controller" *ngIf="maxPage>1">
+        <div class="pagination-container bg-ele-team text-blue pagination-arrw-btn">
+            <div class="pagination-btn pagination-left-btn pagination-arrw-btn" *ngIf="page>1" (click)="prevPage()">
+                <div>&laquo; <label class="pagination-arrw-text">Previous</label></div>
+            </div>
+        </div>
+        <div class="pagination-container bg-ele-team text-blue">
+            <ng-container *ngFor="let i of pageBar">
+                <div [class]="'pagination-btn'+ (i==page ? ' pagination-btn-active' : '') +  ( i==pageBar[0] ? ' pagination-left-btn':'')+  ( i==pageBar[pageBar.length-1] ? ' pagination-right-btn':'')"
+                    (click)="onPageBarClick(i)">
+                    <div class="">{{i}}</div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="pagination-container bg-ele-team text-blue pagination-arrw-btn">
+            <div class="pagination-btn pagination-right-btn pagination-arrw-btn" *ngIf="page<maxPage"
+                (click)="nextPage()">
+                <div><label class="pagination-arrw-text">Next</label> &raquo;</div>
+            </div>
+        </div>
+    </span>
+</div>
+<ng-container *ngIf="isUpadateStatusCheck">
+    <div class="card alert-container bg-ele-team">
+        <div class="TextAlert">
+            Are you sure
+        </div>
+        <div class="btn-wrap">
+            <button class="btn bg-light-gray text-white" style="margin: 1rem 1rem 0 1rem;"
+                (click)="cancleDelete()">Cancle</button>
+            <button class="btn create-btn text-white" style="margin: 1rem 1rem 0 1rem;" (click)="updateOrg()">
+                Update
+            </button>
+        </div>
+    </div>
+    <div class="backdrop" (click)="cancleDelete()"></div>
+
+</ng-container>
+
+<div class="responseLog" #updateResponse>
+</div>

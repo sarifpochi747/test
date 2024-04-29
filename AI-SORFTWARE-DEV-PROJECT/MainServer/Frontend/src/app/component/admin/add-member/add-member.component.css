@@ -1,0 +1,263 @@
+.page-header {
+    width: 95%;
+    display: flex;
+    margin: 0 auto;
+    padding: 1rem 0;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.table {
+    width: 95%;
+    margin: 0 auto;
+    max-height: 85dvh;
+    height: fit-content;
+    padding-bottom: 1rem;
+}
+
+.thead {
+    width: 100%;
+}
+
+.tbody {
+    max-height: 80dvh;
+    overflow-y: auto;
+}
+
+.trow {
+    width: 100%;
+    height: fit-content;
+    display: block;
+}
+
+.trow-input {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    height: fit-content;
+    align-items: center;
+}
+.trow-input {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    height: fit-content;
+    align-items: center;
+}
+.trow-unique-data{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    align-items: center;
+    justify-content: left;
+    text-align: left;
+}
+.tcol-unique-data{
+    width: 20%;
+    min-width: 250px;
+}
+.unique-col-name{
+    width: 90%;
+    text-align: left;
+    margin-left: 5%;
+}
+.thcol {
+    padding: 0.5rem 0;
+    text-align: center;
+}
+
+.tbcol {
+    overflow: hidden;
+    padding: 0.5rem 0.2rem;
+    text-overflow: ellipsis;
+}
+
+.number {
+    width: 5%;
+    min-width: 10px;
+}
+
+.name {
+    width: 20%;
+    min-width: 150px;
+    /* text-align: center; */
+}
+
+.phone {
+    width: 15%;
+    min-width: 100px;
+    text-align: center;
+}
+
+.gender {
+    width: 10%;
+    min-width: 100px;
+    text-align: center;
+}
+
+.brithday {
+    width: 10%;
+    min-width: 100px;
+    text-align: center;
+}
+
+.address {
+    width: 30%;
+    min-width: 100px;
+    text-align: center;
+}
+
+.sbmt {
+    width: 10%;
+    min-width: 100px;
+    text-align: center;
+}
+
+.input {
+    width: 90%;
+    margin: 0 auto;
+    min-width: 0;
+}
+
+.trow-img-input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.image-input-container {
+    margin: 1rem 0;
+    width: 10%;
+    min-width: 150px;
+}
+
+.image-content-container {
+    width: 90%;
+    overflow-x: scroll;
+    display: flex;
+    align-items: center;
+}
+
+.img-wrap {
+    width: fit-content;
+    height: 8rem;
+    margin: 0 1rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.img-wrap>i {
+    font-size: 3rem;
+}
+
+.img {
+    height: 100%;
+    width: auto;
+}
+
+.image-input-camera-icon {
+    font-size: 2.5dvw;
+}
+
+.image-input-btn {
+    display: block;
+    padding: 0.2rem 0.5rem;
+    width: 6rem;
+    margin: 0 auto 0.5rem auto;
+    background-color: #36438D;
+    font-size: 1rem;
+}
+
+.image-input-btn>i {
+    margin-right: 0.5rem;
+}
+
+.image-input-btn:hover {
+    background-color: #5c6594;
+}
+
+.delete-image-icon {
+    font-size: 1.2rem;
+    rotate: 45deg;
+    position: absolute;
+    z-index: 3;
+    top: 0rem;
+    right: 0.4rem;
+    cursor: pointer;
+    color: var(--light-gray);
+    text-shadow: 0px 1px rgb(222, 222, 222);
+}
+
+.delete-image-icon>i:hover {
+    color: var(--light-gray-70);
+}
+
+.add-input-box-btn-wrap {
+    width: 100%;
+    text-align: center;
+}
+
+.add-input-box-btn {
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.add-input-box-btn:hover {
+    opacity: 0.8;
+}
+
+.filter-text,
+.date-filter {
+    border: 1px solid var(--light-gray);
+    color: var(--team-text);
+    border-radius: 3px;
+    padding: 0.1rem 0.3rem;
+}
+
+.card {
+    text-align: center;
+    max-width: none;
+}
+
+.card-header {
+    margin-bottom: 1rem;
+}
+
+.card-body {
+    width: fit-content;
+}
+
+.card-body>.image-content-container {
+    max-width: 800px;
+    overflow-x: auto;
+}
+
+.alert-container {
+    width: fit-content;
+}
+
+@media screen and (max-width:700px) {}
+
+@media screen and (max-width:600px) {
+    .image-input-container {
+        width: 90%;
+        margin: 0 auto;
+        max-width: none;
+        height: fit-content;
+        aspect-ratio: 16/5;
+        margin-bottom: 1rem;
+    }
+
+    .image-input-camera-icon {
+        font-size: 15dvw;
+        height: fit-content;
+    }
+
+    .image-input-btn {
+        display: inline-block;
+        margin: 0.25rem;
+    }
+}

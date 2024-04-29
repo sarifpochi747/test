@@ -1,0 +1,13 @@
+
+Kiosk/Backend/test.py
+Kiosk/Backend/loggetfile.jpg
+Kiosk/Backend/imglogger/loggetfile.jpg
+MainServer/pythonServer/vgg_face_weights.h5
+Kiosk/Backend/facial_expression_model_weights.h5
+Kiosk/Backend/gender_model_weights.h5
+Kiosk/Backend/age_model_weights.h5
+Kiosk/Backend/vgg_face_weights.h5
+IPCamServer/vgg_face_weights.h5
+IPCamServer/age_model_weights.h5
+IPCamServer/gender_model_weights.h5
+IPCamServer/facial_expression_model_weights.h5

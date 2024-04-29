@@ -1,0 +1,20 @@
+---------------------------postgress---------------------------
+docker pull postgres
+docker run --name facetrack-db -e POSTGRES_PASSWORD=admin12345 -d -p 5432:5432 postgres
+docker exec -it facetrack-db psql -U postgres
+CREATE DATABASE ai_soft_dev;
+
+-------------------------python-server-------------------------
+docker image build -t facetrack-pyserver-image .
+docker run --name facetrack-pyserver-container -d -p 5001:5001 facetrack-pyserver-image
+
+----------------------------backend----------------------------
+docker image build -t facetrack-backend-image .
+docker run --name facetrack-backend-container -d -p 0.0.0.0:5000:5000 facetrack-backend-image
+
+----------------------------frontend----------------------------
+docker image build -t facetrack-frontend-image .
+docker run --name facetrack-frontend-container -d -p 0.0.0.0:80:80 facetrack-frontend-image
+
+
+//docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' facetrack-frontend-container

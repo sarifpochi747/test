@@ -1,0 +1,59 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  max-width: 100%;
+  max-height: 99%;
+}
+
+.row {
+  display: flex;
+}
+
+.left-bar {
+  width: fit-content;
+  max-width: 15dvw;
+  height: 100dvh;
+}
+
+.page-container {
+  width: 85dvw;
+  height: 100dvh;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  padding: 1rem 0;
+}
+
+.page-container::-webkit-scrollbar-track {
+  position: fixed;
+  display: none;
+}
+
+.page-container::-webkit-scrollbar-track-piece {
+  display: none;
+}
+
+::-moz-scrollbar-button,
+::-webkit-scrollbar-button {
+  width: 0px;
+}
+
+@media screen and (max-width:1400px) {
+
+  .left-bar {
+    width: fit-content;
+    height: 100dvh;
+  }
+
+  .page-container {
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width:1200px) {
+  .page-container {
+    width: 95%;
+  }
+}

@@ -1,0 +1,74 @@
+<div class="page-wrapper">
+    <div class="dashboard-content">
+        <div class="card left-container bg-ele-team">
+            <div class="card-controller text-base-mode">
+                <div class="page-header">
+                    <div class="page-header">
+                        <table class="table">
+                            <div class="card-body">
+                                <div class="row-wrap">
+                                    <div class="img-wrap"><img class="img-controll" [src]="alertData.image" alt="">
+                                    </div>
+                                    <div class="text-info-wrap">
+                                        <div class="text-info">Name : {{alertData.name}}</div>
+                                        <div class="text-info">Create at :{{alertData.dateCreate}}</div>
+                                        <div class="text-info">
+                                            Status : <label
+                                                [class]="'text-status-'+alertData.status">{{alertData.status}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </table>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead class="card-header">
+                        <tr>
+                            <th>Image</th>
+                            <th>Camera</th>
+                            <th>Date Create</th>
+                        </tr>
+                    </thead>
+                    <tbody class="card-body">
+                        <ng-container *ngIf="render && render.length > 0 ; else detectionNotFound">
+                            <ng-container *ngFor="let item of render">
+                                <tr>
+                                    <td><a  [routerLink]="'/tracking-detail/'+item.imageId" target="_blank"><img [src]="item.image" alt="" width="150"></a></td>
+                                    <td>{{item.camera}}</td>
+                                    <td>{{item.dateDetected}}</td>
+                                </tr>
+                            </ng-container>
+                        </ng-container>
+                        <ng-template #detectionNotFound>
+                            detection not found
+                        </ng-template>
+                    </tbody>
+                </table>
+
+                <span class="pagination-controller" *ngIf="maxPage>1">
+                    <div class="pagination-container bg-ele-team text-blue pagination-arrw-btn">
+                        <div class="pagination-btn pagination-left-btn pagination-arrw-btn" *ngIf="page>1"
+                            (click)="prevPage()">
+                            <div>&laquo; <label class="pc">Previous</label></div>
+                        </div>
+                    </div>
+                    <div class="pagination-container bg-ele-team text-blue">
+                        <ng-container *ngFor="let i of pageBar">
+                            <div [class]="'pagination-btn'+ (i==page ? ' pagination-btn-active' : '') + ( i==1 ? ' pagination-left-btn':'')+ ( i==pageBar[pageBar.length-1] ? ' pagination-right-btn':'')"
+                                (click)="onPageBarClick(i)">
+                                <div class="">{{i}}</div>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="pagination-container bg-ele-team text-blue pagination-arrw-btn">
+                        <div class="pagination-btn pagination-right-btn pagination-arrw-btn" *ngIf="page<maxPage"
+                            (click)="nextPage()">
+                            <div><label class="pc">Next</label> &raquo;</div>
+                        </div>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

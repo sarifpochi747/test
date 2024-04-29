@@ -1,0 +1,92 @@
+<div class="page-wrapper">
+    <div class="dashboard-content">
+        <div class="card left-container bg-ele-team">
+            <div class="card-controller text-base-mode">
+                <div class="card-body">
+                    <div class="row-wrap">
+                        <div class="img-wrap"><img class="img-controll" [src]="imageCaptureData.imgFile" alt=""></div>
+                        <div class="text-info-wrap">
+                            <div class="text-info">Camera Name : {{imageCaptureData.cameraName}}</div>
+                            <div class="text-info">Create at : {{imageCaptureData.timeStamp}}</div>
+                        </div>
+                    </div>
+                    <ng-container>
+                        <table class="table">
+                            <thead class="card-header">
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Camera</th>
+                                    <th>Name</th>
+                                    <th>Gender</th>
+                                    <th>Age</th>
+                                    <th>Emotion</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody class="card-body" *ngIf="render && render.length > 0 ; else canNotFineUserInDomain">
+                                <ng-container *ngFor="let tracking of render">
+                                    <ng-container *ngIf="tracking.mamberId ; else nomamberId">
+                                        <tr>
+                                            <td [routerLink]="'/member/'+(tracking.mamberId)" class="mouse-pointer"><img [src]="tracking.image" alt="" width="100">
+                                            </td>
+                                            <td [routerLink]="'/member/'+(tracking.mamberId)" class="mouse-pointer">
+                                                {{tracking.camera}}</td>
+                                            <td [routerLink]="'/member/'+(tracking.mamberId)" class="mouse-pointer">
+                                                {{tracking.name}}</td>
+                                            <td>{{tracking.gender}}</td>
+                                            <td>{{tracking.age}}</td>
+                                            <td>{{tracking.emotion}}</td>
+                                            <td>{{tracking.dateTime}}</td>
+                                        </tr>
+                                    </ng-container>
+                                    <ng-template #nomamberId>
+                                        <tr>
+                                            <td><img [src]="tracking.image" alt="" width="100"></td>
+                                            <td>{{tracking.camera}}</td>
+                                            <td>{{tracking.name}}</td>
+                                            <td>{{tracking.gender}}</td>
+                                            <td>{{tracking.age}}</td>
+                                            <td>{{tracking.emotion}}</td>
+                                            <td>{{tracking.dateTime}}</td>
+                                        </tr>
+                                    </ng-template>
+                                </ng-container>
+                            </tbody>
+                            <ng-template #canNotFineUserInDomain>
+                                user not found
+                            </ng-template>
+                        </table>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+
+        <div class="card right-container  bg-ele-team">
+            <div class="tracking-table-body">
+                <ng-container *ngFor="let item of imageBefore">
+                    <div class="tracking-list" (click)="routerClick(item.imgCapId)">
+                        <div class="img-tracking-wrap"><img class="img-tracking-controll" [src]="item.imgFile" alt="">
+                        </div>
+                        <div>{{item.timeStamp}}</div>
+                    </div>
+                </ng-container>
+                <div class="tracking-list-current">
+                    <div class="img-tracking-wrap"><img class="img-tracking-controll" [src]="imageCaptureData.imgFile" alt=""></div>
+                    <div>{{imageCaptureData.timeStamp}}</div>
+                </div>
+                <ng-container *ngFor="let item of imageAfter">
+                    <div class="tracking-list" (click)="routerClick(item.imgCapId)">
+                        <div class="img-tracking-wrap"><img class="img-tracking-controll" [src]="item.imgFile" alt="">
+                        </div>
+                        <div>{{item.timeStamp}}</div>
+                    </div>
+                </ng-container>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="responseLog" #updateResponse>
+</div>

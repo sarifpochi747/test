@@ -1,0 +1,180 @@
+<div class="page-wrapper card bg-ele-team">
+    <!-- page-header -->
+    <div class="page-header">
+        <div class="page-header-text">
+            Tracking
+        </div>
+        <div class="filter">
+            <div class="filter-container" (click)="this.isAddModalShow = true">
+                <div class="filter-icon">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <div class="filter-text">
+                    Image
+                </div>
+            </div>
+            <div class="filter-container">
+                <div class="filter-icon">
+                    <i class="fa-solid fa-face-smile"></i>
+                </div>
+                <select id="emotion" class="filter-text" name="emotion" [(ngModel)]="emotionVal" (change)="queryData()">
+                    <option value="Emotion" selected>Emotion</option>
+                    <option value="happy">Happy</option>
+                    <option value="sad">Sad</option>
+                    <option value="angry">Angry</option>
+                    <option value="surprise">Surprise</option>
+                    <option value="fear">Fear</option>
+                </select>
+            </div>
+            <div class="filter-container">
+                <div class="filter-icon">
+                    <i class="fa-solid fa-camera"></i>
+                </div>
+                <select id="camera" class="filter-text" name="camera" [(ngModel)]="cameraVal" (change)="queryData()">
+                    <option value="All" selected>All</option>
+                    <option *ngFor="let item of camList" [value]="item.cameraId">{{item.cameraName}}</option>
+                </select>
+            </div>
+            <div class="filter-container">
+                <div class="date-container">
+                    <div class="filter-text">
+                        <input class="date-filter" type="date" name="startDate" id="startDate"
+                            [(ngModel)]="startDateVal" #startDate (change)="queryData()">
+                    </div>
+                </div>
+                <b style="margin: 0 0.5rem;">-</b>
+                <div class="date-container">
+                    <div class="filter-text">
+                        <input class="date-filter" type="date" name="endDate" id="endDate" [(ngModel)]="endDateVal"
+                            #endDate (change)="queryData()">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <ng-container>
+        <table class="table">
+            <thead class="card-header">
+                <tr>
+                    <th>Image</th>
+                    <th>Camera</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Emotion</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody class="card-body" *ngIf="render && render.length > 0 ; else trackingNotFound">
+                <ng-container *ngFor="let tracking of render">
+                    <tr>
+                        <td [routerLink]="'/tracking-detail/'+(tracking.imagecaptureId)" class="mouse-pointer"><img
+                                [src]="tracking.image" alt="" width="100"></td>
+                        <td [routerLink]="'/tracking-detail/'+(tracking.imagecaptureId)" class="mouse-pointer">
+                            {{tracking.camera}}</td>
+                        <td [routerLink]="'/tracking-detail/'+(tracking.imagecaptureId)" class="mouse-pointer">
+                            {{tracking.name}}</td>
+                        <td>{{tracking.gender}}</td>
+                        <td>{{tracking.age}}</td>
+                        <td>{{tracking.emotion}}</td>
+                        <td>{{tracking.dateTime}}</td>
+                    </tr>
+                </ng-container>
+            </tbody>
+            <ng-template #trackingNotFound>
+                Tracking not found
+            </ng-template>
+        </table>
+    </ng-container>
+
+    <span class="pagination-controller" *ngIf="maxPage>1">
+        <div class="pagination-container bg-ele-team text-blue pagination-arrw-btn">
+            <div class="pagination-btn pagination-left-btn pagination-arrw-btn" *ngIf="page>1" (click)="prevPage()">
+                <div>&laquo; <label class="pc">Previous</label></div>
+            </div>
+        </div>
+        <div class="pagination-container bg-ele-team text-blue">
+            <ng-container *ngFor="let i of pageBar">
+                <div [class]="'pagination-btn'+ (i==page ? ' pagination-btn-active' : '') + ( i==1 ? ' pagination-left-btn':'')+ ( i==pageBar[pageBar.length-1] ? ' pagination-right-btn':'')"
+                    (click)="onPageBarClick(i)">
+                    <div class="">{{i}}</div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="pagination-container bg-ele-team text-blue pagination-arrw-btn">
+            <div class="pagination-btn pagination-right-btn pagination-arrw-btn" *ngIf="page<maxPage"
+                (click)="nextPage()">
+                <div><label class="pc">Next</label> &raquo;</div>
+            </div>
+        </div>
+    </span>
+</div>
+
+<div class="responseLog" #updateResponse>
+</div>
+
+
+<ng-container *ngIf="isAddModalShow">
+    <div class="card alert-container bg-ele-team">
+        <label class="modal-header-text">Find By Image</label>
+        <div class="card-body">
+            <div class="form-container">
+                <div class="input-container">
+                    <div class="input-label">
+                        <label for="name" class="controll-label">Image</label>
+                    </div>
+                    <div class="input-wrap">
+                        <input type="file" accept="image/*" class="input-controller" placeholder="name" #imgInput
+                            style="display: none;" (change)="onImgInputChange($event)">
+                        <div class="filter">
+                            <div class="filter-container" *ngIf="!imageFile||imageFile==='';else imageUploaded"
+                                (click)="onImageUploadClick()">
+                                <div class="filter-icon">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+                                <div class="filter-text">
+                                    Upload image
+                                </div>
+                            </div>
+                            <ng-template #imageUploaded>
+                                <div class="imgPreview-container" (click)="onDelImgClick()">
+                                    <div class="close-icon-wrap">
+                                        <i class="fa-solid fa-rectangle-xmark"></i>
+                                    </div>
+                                    <img [src]="imageFile" alt="" class="imgPreview">
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="filter-container modal-date">
+                        <div class="date-container">
+                            <div class="filter-text">
+                                <input class="date-filter" type="date" name="startDate" id="startDate"
+                                    [(ngModel)]="startDateVal" #startDate>
+                            </div>
+                        </div>
+                        <b style="margin: 0 0.5rem;">-</b>
+                        <div class="date-container">
+                            <div class="filter-text">
+                                <input class="date-filter" type="date" name="endDate" id="endDate"
+                                    [(ngModel)]="endDateVal" #endDate>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-wrap">
+                <button class="btn bg-light-gray text-white" style="margin: 1rem 1rem 0 1rem;"
+                    (click)="cancleSearchImg()">Cancle</button>
+                <button class="btn bg-team-topic text-white" style="margin: 1rem 1rem 0 1rem;"
+                    (click)="findImageCaptureByImage()">
+                    Create
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <div class="backdrop" (click)="cancleSearchImg()"></div>
+</ng-container>

@@ -1,0 +1,129 @@
+<div class="page-wrapper">
+  <div class="dashboard-content">
+    <div class="left-container">
+      <div class="chart-container">
+        <div class="card-controller">
+          <div class="card bg-ele-team text-base-mode">
+            <div class="card-header">
+              <div class="card-header-text-wrap">
+                <h4 class="card-header-text">
+                  Transaction
+                </h4>
+                <h3 class="card-header-text transactions-number">
+                  {{yValuesLine[yValuesLine.length-1]}}
+                </h3>
+              </div>
+              <div class="filter-container">
+                <div class="filter-icon">
+                  <i class="fa-regular fa-calendar"></i>
+                </div>
+                <select id="transactionFilter" class="filter-text" name="transactionFilter"
+                  [(ngModel)]="transactionFilter" (change)="getTransactionGraph()">
+                  <option value="year" >Year</option>
+                  <option value="Month" selected>Month</option>
+                  <option value="Day">Day</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="card-body">
+              <p></p>
+              <div class="chart"#parentLineChart>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="left-btm-container">
+        <div class="card pie-chart bg-ele-team">
+          <div class="card-header">
+            <h4 class="card-header-text">
+              Emotion
+            </h4>
+            <div class="filter-container">
+              <div class="date-container">
+                  <div class="filter-text">
+                      <input class="date-filter" type="date" name="startDate" id="startDate"
+                          [(ngModel)]="emotionStartDate" #startDate (change)="getEmotionGraph()">
+                  </div>
+              </div>
+              <b style="margin: 0 0.5rem;">-</b>
+              <div class="date-container">
+                  <div class="filter-text">
+                      <input class="date-filter" type="date" name="endDate" id="endDate" 
+                      [(ngModel)]="emotionEndDate" #endDate (change)="getEmotionGraph()">
+                  </div>
+              </div>
+          </div>
+          </div>
+          <div class="card-body">
+            <div class="pie-chart-wrap">
+              <canvas style=" height: 50%; aspect-ratio: 1/1;" #domainChart ngDefaultControl></canvas>
+            </div>
+            <div class="chart-data-track">
+              <div class="chart-data-container">
+                <div class="chart-data" *ngFor="let item of xValuesPie;index as index">
+                  <div class="chart-data-header">
+                    <div class="color-dot" [style]="'background-color:'+ colorSetPie[index]"></div>
+                    <div class="chart-data-header-text">{{item}}</div>
+                  </div>
+                  {{yValuesPie[index]}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="camera-list-container card bg-ele-team">
+          <div class="card-header">
+            <h4 class="card-header-text">
+              Camera
+            </h4>
+          </div>
+          <div class="card-body">
+            <table>
+              <thead>
+                <tr>
+                  <td class="camName">name</td>
+                  <td class="camStatus">status</td>
+                </tr>
+              </thead>
+              <tbody class="camera-table-body">
+                <tr *ngFor="let cam of camera">
+                  <td class="camName">{{cam.cameraName}}</td>
+                  <td [class]="'camStatus text-status-'+cam.status">
+                    <div class="color-dot"
+                      [style]="cam.status=='Active' ? 'background-color:#05CD99;':'background-color:red;'"></div>
+                    {{cam.status}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card right-container bg-ele-team">
+      <div class="card-header">
+        <h4 class="card-header-text tracking-header">
+          Last tracking
+        </h4>
+      </div>
+      <!-- <div class="tracking-table"> -->
+        <table class="tracking-table">
+          <tbody class="tracking-table-body">
+            <tr *ngFor="let item of tracking">
+              <td class="image"><img [src]="item.image" alt=""></td>
+              <td class="name">{{item.name}}</td>
+              <td class="gender">{{item.gender}}</td>
+              <td class="age">{{item.age}}</td>
+              <td class="emotion">{{item.emotion}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <!-- </div> -->
+  </div>
+</div>

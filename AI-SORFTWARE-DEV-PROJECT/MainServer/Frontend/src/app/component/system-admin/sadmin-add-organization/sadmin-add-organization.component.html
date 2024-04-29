@@ -1,0 +1,98 @@
+<div class="page-wrapper card bg-ele-team">
+    <div class="left-container">
+        <div class="page-header">
+            <div class="page-header-text">
+                New Organization
+            </div>
+        </div>
+        <div class="form-container">
+            <div class="input-container">
+                <div class="input-label">
+                    <label for="name" class="controll-label">Name<label class="text-red">*</label></label>
+                </div>
+                <div class="input-wrap">
+                    <input type="text" class="input-controller" [formControl]="form.name" placeholder="name">
+                    <div *ngIf="form.name.invalid && form.name.touched" class="p-error">Field is required</div>
+                </div>
+
+            </div>
+
+            <div class="input-container">
+                <div class="input-label">
+                    <label class="controll-label">Email<label class="text-red">*</label></label>
+                </div>
+                <div class="input-wrap">
+                    <input type="email" class="input-controller" [formControl]="form.email" placeholder="email">
+                </div>
+                <small *ngIf="form.email.hasError('required')&&form.email.invalid && form.email.touched"
+                    id="username-help" class="p-error">Field is required</small>
+                <small *ngIf="form.email.hasError('email')&&form.email.invalid && form.email.touched" id="username-help"
+                    class="p-error">Syntax Email Invalid</small>
+            </div>
+            <div class="input-container">
+                <div class="input-label">
+                    <label class="controll-label">Password<label class="text-red">*</label></label>
+                </div>
+                <div class="input-wrap">
+                    <input type="password" class="input-controller" [formControl]="form.password"
+                        placeholder="password">
+                </div>
+                <small *ngIf="form.password.invalid && form.password.touched" id="username-help" class="p-error">Field
+                    is required</small>
+            </div>
+            <div class="input-container">
+                <div class="input-label">
+                    <label class="controll-label">Phone<label class="text-red">*</label></label>
+                </div>
+                <div class="input-wrap">
+                    <input type="tell" class="input-controller" [formControl]="form.phone" placeholder="phone">
+                </div>
+                <small *ngIf="form.phone.invalid && form.phone.touched" id="username-help" class="p-error">Field is
+                    required</small>
+            </div>
+            <div class="input-container" style="align-items: start;">
+                <div class="input-label">
+                    <label class="controll-label">Address<label class="text-red">*</label></label>
+                </div>
+                <div class="input-wrap" style="height: fit-content;">
+                    <textarea class="input-controller text-area" [formControl]="form.address"
+                        placeholder="Address"></textarea>
+                </div>
+                <small *ngIf="form.address.invalid && form.address.touched" id="username-help" class="p-error">Field is
+                    required</small>
+            </div>
+
+        </div>
+    </div>
+    <div class="right-container">
+        <div class="page-header">
+            <div class="page-header-text">
+                Add unique column
+            </div>
+        </div>
+        <div class="unique-column-input-coontainer">
+            <ng-container *ngFor="let col of uniqueColumn;index as i">
+                <div class="input-container">
+                    <div class="input-label">
+                        Column Name
+                    </div>
+                    <div class="input-wrap">
+                        <input class="input" type="text" [(ngModel)]="col.uniqueColumnName">
+                        <div class="btn bg-red text-white" (click)="delInputBox(i)">Delete</div>
+                    </div>
+                </div>
+
+            </ng-container>
+        </div>
+        <div class="add-input-box-btn-wrap">
+            <div class="add-input-box-btn text-team">
+                <i class="fa-solid fa-circle-plus" (click)="addInputBox()"></i>
+            </div>
+        </div>
+    </div>
+    <div class="btn-wrap">
+        <div class="btn add-member-btn text-white" (click)="addOrganization()">Add Organization</div>
+    </div>
+</div>
+<div class="responseLog" #updateResponse>
+</div>

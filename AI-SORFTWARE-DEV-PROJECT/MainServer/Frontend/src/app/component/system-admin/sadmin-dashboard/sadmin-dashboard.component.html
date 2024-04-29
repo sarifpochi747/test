@@ -1,0 +1,108 @@
+<div class="page-wrapper">
+    <div class="dashboard-content">
+        <div class="left-container">
+            <div class="chart-container">
+                <div class="card-controller">
+                    <div class="card bg-ele-team text-base-mode">
+                        <div class="card-header">
+                            <div class="card-header-text-wrap">
+                                <h4 class="card-header-text">
+                                    Transaction
+                                </h4>
+                                <h3 class="card-header-text transactions-number">
+                                    {{yValuesLine[yValuesLine.length-1]}}
+                                </h3>
+                            </div>
+                            <div class="filter-container">
+                                <div class="filter-icon">
+                                    <i class="fa-regular fa-calendar"></i>
+                                </div>
+                                <select id="transactionFilter" class="filter-text" name="transactionFilter"
+                                    [(ngModel)]="transactionFilter" (change)="getTransactionGraph()">
+                                    <option value="year">Year</option>
+                                    <option value="Month" selected>Month</option>
+                                    <option value="Day">Day</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <p></p>
+                            <div class="chart" #parentLineChart>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="left-btm-container">
+                <div class="camera-container card bg-ele-team ">
+                    <div class="card-header">
+                        <h4 class="card-header-text">
+                            Camera
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="camera-table">
+                            <div class="camera-table-header">
+                                <div class="row">
+                                    <div class="camName">name</div>
+                                    <div class="organization">organization</div>
+                                    <div class="camStatus-wrap">status</div>
+                                </div>
+                            </div>
+                            <div class="camera-table-body">
+                                <div class="trow" *ngFor="let cam of camera">
+                                    <div class="camName">{{cam.cameraName}}</div>
+                                    <div class="organization">{{cam.organizationName}}</div>
+                                    <div [class]="'camStatus-wrap text-status-'+cam.status">
+                                        <div class="camStatus">
+                                            <div class="color-dot"
+                                                [style]="cam.status=='Active' ? 'background-color:#05CD99;':'background-color:red;'">
+                                            </div>
+                                            {{cam.status}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card right-container bg-ele-team">
+            <div class="card-header">
+                <h4 class="card-header-text tracking-header">
+                    Transaction
+                </h4>
+                <div class="filter-container">
+                    <div class="date-container">
+                        <div class="filter-text">
+                            <input class="date-filter" type="date" [(ngModel)]="startDate"
+                                (change)="getOrganizationTransaction()">
+                        </div>
+                    </div>
+                    <b style="margin: 0 0.5rem;">-</b>
+                    <div class="date-container">
+                        <div class="filter-text">
+                            <input class="date-filter" type="date" [(ngModel)]="endDate"
+                                (change)="getOrganizationTransaction()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tracking-table">
+                <div class="tracking-table-body">
+                    <div class="thead" *ngFor="let item of tracking">
+                        <div class="name">organization name</div>
+                        <div class="trackingNumber">Transaction</div>
+                    </div>
+                    <div class="trow" *ngFor="let item of tracking">
+                        <div class="name">{{item.organizationName}}</div>
+                        <div class="trackingNumber">{{item.value}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

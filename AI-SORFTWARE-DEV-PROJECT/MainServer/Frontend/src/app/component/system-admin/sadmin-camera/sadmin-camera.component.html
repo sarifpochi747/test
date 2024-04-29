@@ -1,0 +1,220 @@
+<div class="page-wrapper card bg-ele-team">
+    <div class="page-header">
+        <div class="page-header-text">
+            Camera
+        </div>
+        <div class="filter">
+            <div class="search-container">
+                <div class="search-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="search" [(ngModel)]="filter"
+                        (change)="queryData()">
+                </div>
+            </div>
+            <div class="filter-container" (click)="this.isAddModalShow = true">
+                <div class="filter-icon">
+                    <i class="fa-solid fa-camera"></i>
+                </div>
+                <div class="filter-text">
+                    Add Camera
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="render && render.length > 0 ; else canNotFineUserInDomain">
+        <table class="table">
+            <thead class="card-header">
+                <tr>
+                    <th>ID</th>
+                    <th>Organization</th>
+                    <th>Camera Name</th>
+                    <th>spec</th>
+                    <th>Detail</th>
+                    <th>Status</th>
+                    <th>Date installation</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="card-body">
+                <ng-container *ngFor="let cam of render;index as i">
+                    <tr>
+                        <td>{{cam.cameraId}}</td>
+                        <td>{{cam.organization?.organizationName}}</td>
+                        <td>{{cam.cameraName}}</td>
+                        <td>{{cam.cameraSpec}}</td>
+                        <td>{{cam.cameraDetail}}</td>
+                        <td><label [class]="'delete-icon text-status-'+cam.status"
+                                (click)="alertChangeStatusCamera(cam.cameraId)">{{cam.status}}</label></td>
+                        <td>{{dateInputFormat(cam.dateInstall || '')}}</td>
+                        <td>
+                            <i class="fa-solid fa-pen-to-square" (click)="editCamera(i)"></i>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </ng-container>
+    <ng-template #canNotFineUserInDomain>
+        user not found
+    </ng-template>
+    <span class="pagination-controller" *ngIf="maxPage>1">
+        <div class="pagination-container bg-ele-team text-blue pagination-arrw-btn">
+            <div class="pagination-btn pagination-left-btn pagination-arrw-btn" *ngIf="page>1" (click)="prevPage()">
+                <div>&laquo; <label class="pagination-arrw-text">Previous</label></div>
+            </div>
+        </div>
+        <div class="pagination-container bg-ele-team text-blue">
+            <ng-container *ngFor="let i of pageBar">
+                <div [class]="'pagination-btn'+ (i==page ? ' pagination-btn-active' : '') +  ( i==pageBar[0] ? ' pagination-left-btn':'')+  ( i==pageBar[pageBar.length-1] ? ' pagination-right-btn':'')"
+                    (click)="onPageBarClick(i)">
+                    <div class="">{{i}}</div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="pagination-container bg-ele-team text-blue pagination-arrw-btn">
+            <div class="pagination-btn pagination-right-btn pagination-arrw-btn" *ngIf="page<maxPage"
+                (click)="nextPage()">
+                <div><label class="pagination-arrw-text">Next</label> &raquo;</div>
+            </div>
+        </div>
+    </span>
+</div>
+
+<ng-container *ngIf="isAddModalShow">
+    <div class="card alert-container bg-ele-team">
+        <label class="modal-header-text">Create Alert</label>
+        <div class="card-body">
+            <div class="form-container">
+                <div class="input-container">
+                    <div class="input-label">
+                        <label class="controll-label">Camera Name</label>
+                    </div>
+                    <div class="input-wrap">
+                        <input type="text" class="input-controller" [formControl]="form.cameraName" placeholder="name">
+                    </div>
+                </div>
+                <div class="input-container">
+                    <div class="input-label">
+                        <label class="controll-label">Organization id</label>
+                    </div>
+                    <div class="input-wrap">
+                        <input type="text" class="input-controller" [formControl]="form.organization"
+                            placeholder="organization" />
+                    </div>
+                </div>
+                <div class="input-container">
+                    <div class="input-label">
+                        <label class="controll-label">Date Install</label>
+                    </div>
+                    <div class="input-wrap">
+                        <input type="date" class="input-controller" [formControl]="form.dateInstall"
+                            placeholder="date install" />
+                    </div>
+                </div>
+                <div class="input-container">
+                    <div class="input-label">
+                        <label class="controll-label">Spec</label>
+                    </div>
+                    <div class="input-wrap">
+                        <textarea class="input-controller text-area" [formControl]="form.cameraSpec"
+                            placeholder="spec"></textarea>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <div class="input-label">
+                        <label class="controll-label">Detail</label>
+                    </div>
+                    <div class="input-wrap">
+                        <textarea class="input-controller text-area" [formControl]="form.cameraDetail"
+                            placeholder="detail"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-wrap">
+                <button class="btn bg-light-gray text-white" style="margin: 1rem 1rem 0 1rem;"
+                    (click)="this.isAddModalShow = false">Cancle</button>
+                <button class="btn create-btn text-white" style="margin: 1rem 1rem 0 1rem;" (click)="addCamera()">
+                    Create
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="backdrop" (click)="this.isAddModalShow = false"></div>
+</ng-container>
+
+<ng-container *ngIf="isEdit">
+    <div class="card alert-container bg-ele-team">
+        <label class="modal-header-text">Edit Camera</label>
+        <div class="card-body">
+            <div class="form-container">
+                <div class="input-container">
+                    <div class="input-label">
+                        <label class="controll-label">Camera Name</label>
+                    </div>
+                    <div class="input-wrap">
+                        <input type="text" class="input-controller" [(ngModel)]="cameraNameEditInput"
+                            placeholder="name">
+                    </div>
+                </div>
+                <div class="input-container">
+                    <div class="input-label">
+                        <label class="controll-label">Date Install</label>
+                    </div>
+                    <div class="input-wrap">
+                        <input type="date" class="input-controller" [(ngModel)]="cameraDateEditInput"
+                            placeholder="date install" />
+                    </div>
+                </div>
+                <div class="input-container">
+                    <div class="input-label">
+                        <label class="controll-label">Spec</label>
+                    </div>
+                    <div class="input-wrap">
+                        <textarea class="input-controller text-area" [(ngModel)]="cameraSpecEditInput"
+                            placeholder="spec"></textarea>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <div class="input-label">
+                        <label class="controll-label">Detail</label>
+                    </div>
+                    <div class="input-wrap">
+                        <textarea class="input-controller text-area" [(ngModel)]="cameraDetailEditInput"
+                            placeholder="detail"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-wrap">
+            <button class="btn bg-light-gray text-white" style="margin: 1rem 1rem 0 1rem;"
+                (click)="cancleEdit()">Cancle</button>
+            <button class="btn bg-team-topic text-white" style="margin: 1rem 1rem 0 1rem;" (click)="submitEditCamera()">
+                Update
+            </button>
+        </div>
+    </div>
+    <div class="backdrop" (click)="cancleEdit()"></div>
+</ng-container>
+
+<ng-container *ngIf="isUpadateStatusCheck">
+    <div class="card alert-container bg-ele-team">
+        <div class="TextAlert">
+            Are you sure to change camera status
+        </div>
+        <div class="btn-wrap">
+            <button class="btn bg-light-gray text-white" style="margin: 1rem 1rem 0 1rem;"
+                (click)="this.isUpadateStatusCheck = false">Cancle</button>
+            <button class="btn create-btn text-white" style="margin: 1rem 1rem 0 1rem;" (click)="deleteCamera()">
+                Update
+            </button>
+        </div>
+    </div>
+</ng-container>
+
+<div class="responseLog" #updateResponse>
+</div>

@@ -1,0 +1,36 @@
+<div class="page">
+    <div class="container">
+      <div class="card bg-white" id="loginbox">
+        <div class="card-header">
+          <div class="header-text">Sign In</div>
+          <label class="header-detail">System-admin</label>
+        </div>
+        <div class="card-body ">
+          <form (ngSubmit)="onLoginClick()">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input class="form-control" [(ngModel)]="usernameInputValue" name="username" type="email"
+                placeholder="Email" />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input class="form-control" [(ngModel)]="passwordInputValue" name="password" type="password"
+                placeholder="Password" />
+            </div>
+            <div class="form-group">
+              <div class="forgot-pass-wrap">
+                Forgot Password
+              </div>
+            </div>
+            
+            <ng-container>
+              <div class="responseLog" #loginstatus>
+              </div>
+            </ng-container>
+            <button type="submit" class="sigin-btn bg-blue text-white">Sign in</button>
+          </form>
+        </div>
+        <div class="card-footer"></div>
+      </div>
+    </div>
+  </div>

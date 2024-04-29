@@ -1,0 +1,101 @@
+.page {
+  width: 100dvw;
+  height: 100dvh;
+  background: linear-gradient(116deg, #E7E9FF -0.42%, #31437D 72.29%, #17254F 97.63%);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.container {
+  max-width: 500px;
+  width: 90%;
+  min-width: 350px;
+  text-align: center;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.card-header{
+  border: none;
+  margin: 1rem 0;
+}
+.header-text {
+  color: #000;
+  font-family: Inter;
+  font-size: 2.0625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%;
+  margin: 1rem 0 0.5rem 0;
+}
+.header-detail{
+  color: var(--8A92A6-Text-Color-2, #8A92A6);
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%;
+}
+.card-body {
+  padding-bottom: 1rem;
+  border-radius: 0 0 0.3rem 0.3rem;
+}
+
+.form-group {
+  width: 80%;
+  text-align: left;
+  margin: 1rem auto;
+}
+
+
+.form-group>label {
+  color: var(--8A92A6-Text-Color-2, #8A92A6);
+  /* H6 16px Regular Inter */
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%; /* 1.75rem */
+}
+
+.form-group>input {
+  font-size: 1.15rem;
+  border-radius: 0.3rem;
+  border: 1px solid var(--shadows);
+  display: flex;
+  padding: 0.35rem ;
+  align-items: center;
+}
+
+.form-group>input:focus {
+  border-color: var(--light-cyan);
+  outline: 1px solid var(--light-cyan);
+}
+.forgot-pass-wrap{
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  color: var(--3A57E8-Primary, #3A57E8);
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%;
+  cursor: pointer;
+}
+
+.forgot-pass-wrap:hover{
+opacity: 0.8;
+text-decoration: underline;
+}
+
+.sigin-btn{
+  margin-top: 1rem;
+  display: inline-flex;
+  padding: 0.5rem 1.5rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.25rem;
+}

@@ -1,0 +1,141 @@
+<ng-container>
+  <div class="left-bar-container left-bar-hidden" #leftBar name="leftBar" *ngIf="this.isShowState" (click)="show()">
+    <div class="comp-name">
+      <label for="">{{compName}}</label>
+    </div>
+    <div class="leftbar-wrap">
+      <div class="sidebar-menu">
+
+        <div class="menu-wrap">
+
+          <div [routerLink]="'/dashboard'" [class]="pageSelected==='dashboard'?'topic-menu active':'topic-menu '"
+            (click)="onMenuClick('dashboard')">
+            <div class="menu-icon">
+              <i class="fa-solid fa-border-all"></i>
+            </div>
+            <div class="menu-label">
+              Dashboard
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-wrap">
+          <div routerLink="/all-member"
+            [class]="['all-member','add-member','member'].includes(pageSelected) ?'topic-menu active':'topic-menu '"
+            (click)="onMenuClick('member')">
+            <div class="menu-icon">
+              <i class="fa-solid fa-users-rectangle"></i>
+            </div>
+            <div class="menu-label">
+              Member
+            </div>
+          </div>
+          <ul [class]="!['all-member','add-member','member'].includes(pageSelected)  ? 'menu-link hidden':'menu-link'">
+            <li routerLink="/all-member" [class]="pageSelected==='all-member'?'topic-menu active':'topic-menu '"
+              (click)="onMenuClick('all-member')">All Member</li>
+            <li routerLink="/add-member" [class]="pageSelected==='add-member'?'topic-menu active':'topic-menu '"
+              (click)="onMenuClick('add-member')">Add Member</li>
+          </ul>
+        </div>
+
+        <div class="menu-wrap">
+          <div routerLink="/tracking" [class]="pageSelected==='tracking'?'topic-menu active':'topic-menu '"
+            (click)="onMenuClick('tracking')">
+            <div class="menu-icon">
+              <i class="fa-solid fa-users-viewfinder"></i>
+            </div>
+            <div class="menu-label">
+              Tracking
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-wrap">
+          <div routerLink="/facial-alert" [class]="pageSelected==='facial-alert'?'topic-menu active':'topic-menu '"
+            (click)="onMenuClick('facial-alert')">
+            <div class="menu-icon">
+              <i class="fa-regular fa-bell"></i>
+            </div>
+            <div class="menu-label">
+              Facial alert
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-wrap">
+          <div [routerLink]="'/camera'" [class]="pageSelected==='camera'?'topic-menu active':'topic-menu '"
+            (click)="onMenuClick('camera')">
+            <div class="menu-icon">
+              <i class="fa-solid fa-camera"></i>
+            </div>
+            <div class="menu-label">
+              Camera
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-wrap">
+          <div [routerLink]="'/profile'" [class]="pageSelected == 'profile' ? 'topic-menu active':'topic-menu '"
+            (click)="onMenuClick('profile')">
+            <div class="menu-icon">
+              <i class="fa-solid fa-address-card"></i>
+            </div>
+            <div class="menu-label">
+              Profile
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-wrap">
+          <div [routerLink]="'/greeting'" [class]="pageSelected == 'greeting' ? 'topic-menu active':'topic-menu '"
+            (click)="onMenuClick('greeting')">
+            <div class="menu-icon">
+              <i class="fa-solid fa-volume-high"></i>
+            </div>
+            <div class="menu-label">
+              Greeting
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+
+    <div (click)="this.logoutAlert = true" class="logout-btn-wrap">
+      <div class="topic-menu">
+        <div class="menu-label">
+          <div class="menu-link">
+            <i class="fas fa-sign-out-alt" style="margin-right:0.3rem;"></i>
+            <span>Log out</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="backdrop lb-backdrop" *ngIf="this.isFocusState" (click)="hidden()"></div>
+
+  <!-- Sidebar-->
+
+  <!-- Logout Modal-->
+  <ng-container *ngIf="logoutAlert">
+    <div class="alert-container bg-team">
+      Are you confirm logout?
+      <div class="btn-wrap">
+        <button class="btn bg-blue text-white" style="margin: 1rem 1rem 0 1rem;"
+          (click)="this.logoutAlert = false">Cancle</button>
+        <button class="btn bg-red text-white" style="margin: 1rem 1rem 0 1rem;" (click)="onConfirmLogout()">
+          Logout
+        </button>
+      </div>
+    </div>
+
+    <div class="backdrop" (click)="this.logoutAlert = false"></div>
+  </ng-container>
+  <!-- Logout Modal-->
+</ng-container>
+<ng-container>
+  <div class="responseLog" #updateResponse>
+  </div>
+</ng-container>
